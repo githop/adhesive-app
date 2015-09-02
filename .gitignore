@@ -5,5 +5,4 @@ bower_components/
 .tmp/
 dist/
 e2e/
-gulp/
 
