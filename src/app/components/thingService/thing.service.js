@@ -44,7 +44,7 @@
     }
 
     function create() {
-      var _ctrl = function() {
+      var _ctrl = function($mdDialog) {
         var ctrl = this;
         ctrl.opts = _getOpts();
         ctrl.add = function(data) {
@@ -57,6 +57,8 @@
           $mdDialog.cancel();
         };
       };
+
+      _ctrl.$inject = ['$mdDialog'];
 
       var dialog = {
         controller: _ctrl,
@@ -75,9 +77,9 @@
     }
 
     function update(thing) {
-      var _ctrl = function(data) {
+      var _ctrl = function() {
         var ctrl = this;
-        ctrl.copy = angular.copy(data);
+        ctrl.copy = angular.copy(ctrl.data);
         ctrl.opts = _getOpts();
 
         ctrl.onSelect = function(selected) {
@@ -99,6 +101,7 @@
         templateUrl: 'edit.tmpl.html',
         parent: angular.element(document.body),
         locals: {data: thing},
+        bindToController: true,
         clickOutsideToClose:true
       };
 
